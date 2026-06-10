@@ -22,14 +22,14 @@ resource "azurerm_virtual_network" "vnet" {
 }
 
 resource "azurerm_subnet" "frontend" {
-  name                 = "frontend"
+  name                 = var.frontend_subnet_name
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = [var.subnet_frontend_prefix]
 }
 
 resource "azurerm_subnet" "backend" {
-  name                 = "backend"
+  name                 = var.backend_subnet_name
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = [var.subnet_backend_prefix]

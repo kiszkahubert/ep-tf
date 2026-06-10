@@ -37,3 +37,13 @@ variable "tags" {
   description = "Tags to apply to all resources"
   type        = map(string)
 }
+
+variable "backend_subnet_name" {
+  description = "Backend subnet name"
+  type        = string
+}
+
+variable "frontend_subnet_name" {
+  description = "Frontend subnet name"
+  type        = string
+}

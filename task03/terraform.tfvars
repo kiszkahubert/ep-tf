@@ -8,3 +8,5 @@ subnet_backend_prefix  = "10.0.2.0/24"
 tags = {
   Creator = "hubert_kiszka@epam.com"
 }
+backend_subnet_name  = "backend"
+frontend_subnet_name = "frontend"
