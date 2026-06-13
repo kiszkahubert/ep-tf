@@ -81,5 +81,5 @@ variable "dns_name_label" {
 
 variable "ip_cfg_name" {
   description = "IP config name"
-  type = string
+  type        = string
 }
