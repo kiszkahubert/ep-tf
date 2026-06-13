@@ -78,3 +78,8 @@ variable "dns_name_label" {
   description = "DNS Name label"
   type        = string
 }
+
+variable "ip_cfg_name" {
+  description = "IP config name"
+  type = string
+}

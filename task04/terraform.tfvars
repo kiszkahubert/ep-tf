@@ -15,3 +15,4 @@ vm_admin_username       = "adminuser"
 tags = {
   Creator = "hubert_kiszka@epam.com"
 }
+ip_cfg_name = "internal"
