@@ -1,0 +1,49 @@
+import {
+  id = "/subscriptions/821f0b19-ec7a-4bb5-8eb0-7ee84fe42c3b/resourceGroups/cmtr-7c5kvppd-mod7-rg"
+  to = azurerm_resource_group.rg
+}
+
+import {
+  id = "/subscriptions/821f0b19-ec7a-4bb5-8eb0-7ee84fe42c3b/resourceGroups/cmtr-7c5kvppd-mod7-rg/providers/Microsoft.Storage/storageAccounts/cmtr7c5kvppdmod7sa"
+  to = azurerm_storage_account.sa
+}
+
+resource "azurerm_resource_group" "rg" {
+  name     = var.resource_group_name
+  location = var.location
+}
+
+resource "azurerm_storage_account" "sa" {
+  name                     = var.storage_account_name
+  resource_group_name      = azurerm_resource_group.rg.name
+  location                 = azurerm_resource_group.rg.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+  lifecycle {
+    ignore_changes = [
+      account_kind,
+      access_tier,
+      enable_https_traffic_only,
+      min_tls_version,
+      allow_nested_items_to_be_public,
+      shared_access_key_enabled,
+      public_network_access_enabled,
+      blob_properties,
+      network_rules,
+      tags,
+    ]
+  }
+}
+
+module "cdn" {
+  source               = "./modules/cdn"
+  fd_profile_name      = var.fd_profile_name
+  fd_profile_sku       = var.fd_profile_sku
+  fd_endpoint_name     = var.fd_endpoint_name
+  fd_origin_group_name = var.fd_origin_group_name
+  fd_origin_name       = var.fd_origin_name
+  fd_route_name        = var.fd_route_name
+  resource_group_name  = azurerm_resource_group.rg.name
+  blob_host            = local.storage_account_primary_blob_host
+  tags                 = var.tags
+}
