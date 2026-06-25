@@ -18,7 +18,7 @@ resource "azurerm_traffic_manager_profile" "tm" {
 }
 
 resource "azurerm_traffic_manager_azure_endpoint" "endpoint" {
-  for_each = var.endpoints
+  for_each           = var.endpoints
   name               = each.value.name
   profile_id         = azurerm_traffic_manager_profile.tm.id
   target_resource_id = each.value.target_resource_id

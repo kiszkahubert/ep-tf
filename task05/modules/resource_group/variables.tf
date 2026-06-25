@@ -10,5 +10,5 @@ variable "location" {
 
 variable "tags" {
   description = "Tags to apply to the Resource group"
-  type = map(string)
+  type        = map(string)
 }
