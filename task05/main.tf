@@ -7,20 +7,20 @@ module "resource_groups" {
 }
 
 module "app_service_plans" {
-  source   = "./modules/app_service_plan"
-  for_each = var.app_service_plans
+  source              = "./modules/app_service_plan"
+  for_each            = var.app_service_plans
   name                = each.value.name
   resource_group_name = module.resource_groups[each.value.rg_key].name
   location            = module.resource_groups[each.value.rg_key].location
   sku                 = each.value.sku
   worker_count        = each.value.worker_count
   tags                = var.tags
-  depends_on = [module.resource_groups]
+  depends_on          = [module.resource_groups]
 }
 
 module "app_services" {
-  source   = "./modules/app_service"
-  for_each = var.app_services
+  source              = "./modules/app_service"
+  for_each            = var.app_services
   name                = each.value.name
   resource_group_name = module.resource_groups[each.value.rg_key].name
   location            = module.resource_groups[each.value.rg_key].location
@@ -44,7 +44,7 @@ module "app_services" {
 }
 
 module "traffic_manager" {
-  source = "./modules/traffic_manager"
+  source              = "./modules/traffic_manager"
   name                = var.traffic_manager_name
   resource_group_name = module.resource_groups[var.traffic_manager_rg_key].name
   routing_method      = var.traffic_manager_routing_method
