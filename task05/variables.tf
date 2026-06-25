@@ -49,3 +49,13 @@ variable "tags" {
   description = "Tags to apply to all supported resources"
   type        = map(string)
 }
+
+variable "ip_restriction_allow_ip_name" {
+  description = "Name of the IP restriction rule for verification agent IP"
+  type        = string
+}
+
+variable "ip_restriction_allow_tm_name" {
+  description = "Name of the IP restriction rule for Traffic Manager service tag"
+  type        = string
+}

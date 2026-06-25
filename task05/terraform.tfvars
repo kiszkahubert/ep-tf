@@ -38,6 +38,8 @@ app_services = {
     asp_key = "asp2"
   }
 }
+ip_restriction_allow_ip_name   = "allow-ip"
+ip_restriction_allow_tm_name   = "allow-tm"
 traffic_manager_name           = "cmaz-7c5kvppd-mod5-traf"
 traffic_manager_rg_key         = "rg3"
 traffic_manager_routing_method = "Performance"

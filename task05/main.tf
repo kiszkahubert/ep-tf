@@ -28,13 +28,13 @@ module "app_services" {
   tags                = var.tags
   ip_restrictions = [
     {
-      name       = "allow-ip"
+      name       = var.ip_restriction_allow_ip_name
       action     = "Allow"
       priority   = 100
       ip_address = "${var.verification_agent_ip}/32"
     },
     {
-      name        = "allow-tm"
+      name        = var.ip_restriction_allow_tm_name
       action      = "Allow"
       priority    = 200
       service_tag = "AzureTrafficManager"
