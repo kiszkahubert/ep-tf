@@ -1,0 +1,15 @@
+name_prefix                   = "cmaz-7c5kvppd-mod6"
+location                      = "France Central"
+key_vault_name                = "cmaz-7c5kvppd-mod6-kv"
+key_vault_resource_group_name = "cmaz-7c5kvppd-mod6-kv-rg"
+kv_secret_admin_name          = "sql-admin-name"
+kv_secret_admin_password      = "sql-admin-password"
+sql_firewall_rule_name        = "allow-verification-ip"
+allowed_ip_address            = "18.153.146.156"
+sql_database_sku              = "S2"
+asp_sku                       = "P0v3"
+dotnet_version                = "8.0"
+connection_string_name        = "string_name"
+tags = {
+  Creator = "hubert_kiszka@epam.com"
+}
