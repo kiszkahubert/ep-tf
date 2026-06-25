@@ -18,6 +18,12 @@ resource "azurerm_cdn_frontdoor_origin_group" "origin_group" {
     sample_size                 = 4
     successful_samples_required = 3
   }
+  health_probe {
+    path                = "/"
+    request_type        = "HEAD"
+    protocol            = "Https"
+    interval_in_seconds = 100
+  }
 }
 
 resource "azurerm_cdn_frontdoor_origin" "origin" {
@@ -41,8 +47,8 @@ resource "azurerm_cdn_frontdoor_route" "route" {
   https_redirect_enabled        = true
   patterns_to_match             = ["/*"]
   supported_protocols           = ["Http", "Https"]
-  depends_on = [ 
-    azurerm_cdn_frontdoor_origin.origin, 
+  depends_on = [
+    azurerm_cdn_frontdoor_origin.origin,
     azurerm_cdn_frontdoor_origin_group.origin_group
   ]
 }
