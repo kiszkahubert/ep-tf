@@ -23,7 +23,6 @@ resource "azurerm_storage_account" "sa" {
     ignore_changes = [
       account_kind,
       access_tier,
-      enable_https_traffic_only,
       min_tls_version,
       allow_nested_items_to_be_public,
       shared_access_key_enabled,

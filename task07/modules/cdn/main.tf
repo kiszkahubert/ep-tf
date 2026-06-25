@@ -23,7 +23,6 @@ resource "azurerm_cdn_frontdoor_origin_group" "origin_group" {
 resource "azurerm_cdn_frontdoor_origin" "origin" {
   name                           = var.fd_origin_name
   cdn_frontdoor_origin_group_id  = azurerm_cdn_frontdoor_origin_group.origin_group.id
-  enabled                        = true
   host_name                      = var.blob_host
   origin_host_header             = var.blob_host
   http_port                      = 80
@@ -38,7 +37,6 @@ resource "azurerm_cdn_frontdoor_route" "route" {
   cdn_frontdoor_endpoint_id     = azurerm_cdn_frontdoor_endpoint.endpoint.id
   cdn_frontdoor_origin_group_id = azurerm_cdn_frontdoor_origin_group.origin_group.id
   cdn_frontdoor_origin_ids      = [azurerm_cdn_frontdoor_origin.origin.id]
-  enabled                       = true
   forwarding_protocol           = "HttpsOnly"
   https_redirect_enabled        = true
   patterns_to_match             = ["/*"]
