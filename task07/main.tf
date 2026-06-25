@@ -1,11 +1,26 @@
 import {
-  id = "/subscriptions/821f0b19-ec7a-4bb5-8eb0-7ee84fe42c3b/resourceGroups/cmtr-7c5kvppd-mod7-rg"
-  to = azurerm_resource_group.rg
+  id = "/subscriptions/821f0b19-ec7a-4bb5-8eb0-7ee84fe42c3b/resourceGroups/cmtr-7c5kvppd-mod7-rg/providers/Microsoft.Cdn/profiles/cmtr-7c5kvppd-mod7-fd-profile"
+  to = azurerm_cdn_frontdoor_profile.profile
 }
 
 import {
-  id = "/subscriptions/821f0b19-ec7a-4bb5-8eb0-7ee84fe42c3b/resourceGroups/cmtr-7c5kvppd-mod7-rg/providers/Microsoft.Storage/storageAccounts/cmtr7c5kvppdmod7sa"
-  to = azurerm_storage_account.sa
+  id = "/subscriptions/821f0b19-ec7a-4bb5-8eb0-7ee84fe42c3b/resourceGroups/cmtr-7c5kvppd-mod7-rg/providers/Microsoft.Cdn/profiles/cmtr-7c5kvppd-mod7-fd-profile/afdEndpoints/cmtr-7c5kvppd-mod7-fd-endpoint"
+  to = azurerm_cdn_frontdoor_endpoint.endpoint
+}
+
+import {
+  id = "/subscriptions/821f0b19-ec7a-4bb5-8eb0-7ee84fe42c3b/resourceGroups/cmtr-7c5kvppd-mod7-rg/providers/Microsoft.Cdn/profiles/cmtr-7c5kvppd-mod7-fd-profile/originGroups/cmtr-7c5kvppd-mod7-fd-origin-group"
+  to = azurerm_cdn_frontdoor_origin_group.origin_group
+}
+
+import {
+  id = "/subscriptions/821f0b19-ec7a-4bb5-8eb0-7ee84fe42c3b/resourceGroups/cmtr-7c5kvppd-mod7-rg/providers/Microsoft.Cdn/profiles/cmtr-7c5kvppd-mod7-fd-profile/originGroups/cmtr-7c5kvppd-mod7-fd-origin-group/origins/cmtr-7c5kvppd-mod7-fd-origin"
+  to = azurerm_cdn_frontdoor_origin.origin
+}
+
+import {
+  id = "/subscriptions/821f0b19-ec7a-4bb5-8eb0-7ee84fe42c3b/resourceGroups/cmtr-7c5kvppd-mod7-rg/providers/Microsoft.Cdn/profiles/cmtr-7c5kvppd-mod7-fd-profile/afdEndpoints/cmtr-7c5kvppd-mod7-fd-endpoint/routes/default"
+  to = azurerm_cdn_frontdoor_route.route
 }
 
 resource "azurerm_resource_group" "rg" {
