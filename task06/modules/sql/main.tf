@@ -33,7 +33,7 @@ resource "azurerm_mssql_database" "sql_database" {
 resource "random_password" "sql_password" {
   length           = 16
   special          = true
-  override_special = "!#$%&*()-_=+[]{}<>:?"
+  override_special = "@"
   min_upper        = 1
   min_lower        = 1
   min_numeric      = 1
