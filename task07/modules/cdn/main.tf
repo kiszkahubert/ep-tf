@@ -48,6 +48,7 @@ resource "azurerm_cdn_frontdoor_route" "route" {
   https_redirect_enabled        = true
   patterns_to_match             = ["/*"]
   supported_protocols           = ["Http", "Https"]
+  cdn_frontdoor_origin_path     = var.fd_origin_path
   depends_on = [
     azurerm_cdn_frontdoor_endpoint.endpoint,
     azurerm_cdn_frontdoor_origin.origin,

@@ -44,5 +44,6 @@ module "cdn" {
   fd_route_name        = var.fd_route_name
   resource_group_name  = azurerm_resource_group.rg.name
   blob_host            = local.storage_account_primary_blob_host
+  fd_origin_path       = local.fd_origin_path
   tags                 = var.tags
 }

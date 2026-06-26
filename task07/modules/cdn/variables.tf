@@ -42,3 +42,8 @@ variable "tags" {
   description = "Tags to apply to resources"
   type        = map(string)
 }
+
+variable "fd_origin_path" {
+  description = "Origin path"
+  type        = string
+}
