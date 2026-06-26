@@ -36,6 +36,7 @@ resource "azurerm_cdn_frontdoor_origin" "origin" {
   priority                       = 1
   weight                         = 1000
   certificate_name_check_enabled = true
+  enabled                        = true
 }
 
 resource "azurerm_cdn_frontdoor_route" "route" {
@@ -48,6 +49,7 @@ resource "azurerm_cdn_frontdoor_route" "route" {
   patterns_to_match             = ["/*"]
   supported_protocols           = ["Http", "Https"]
   depends_on = [
+    azurerm_cdn_frontdoor_endpoint.endpoint,
     azurerm_cdn_frontdoor_origin.origin,
     azurerm_cdn_frontdoor_origin_group.origin_group
   ]
