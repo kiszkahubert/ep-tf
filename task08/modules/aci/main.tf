@@ -1,0 +1,22 @@
+resource "azurerm_container_group" "aci" {
+  name = var.aci_name
+  location = var.location
+  resource_group_name = var.resource_group_name
+  os_type = "Linux"
+  image_registry_credential {
+    server = var.server_name
+    username = var.acr_admin_username
+    password = var.acr_admin_password
+  }
+  container {
+    name = var.container_name
+    image = var.image
+    cpu = "0.5"
+    memory = "1.5"
+    ports {
+      port = 8080
+      protocol = "TCP"
+    }
+  }
+  tags = var.tags
+}
