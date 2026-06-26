@@ -47,3 +47,8 @@ variable "tags" {
   description = "Tags to apply to all resources"
   type        = map(string)
 }
+
+variable "blob_filename" {
+  description = "Name of the blob file in the Storage Account"
+  type        = string
+}

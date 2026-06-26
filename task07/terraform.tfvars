@@ -7,6 +7,7 @@ fd_endpoint_name     = "cmtr-7c5kvppd-mod7-fd-endpoint"
 fd_origin_group_name = "cmtr-7c5kvppd-mod7-fd-origin-group"
 fd_origin_name       = "cmtr-7c5kvppd-mod7-fd-origin"
 fd_route_name        = "default"
+blob_filename        = "blob.txt"
 tags = {
   Creator = "hubert_kiszka@epam.com"
 }
