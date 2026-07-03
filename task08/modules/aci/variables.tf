@@ -32,3 +32,23 @@ variable "tags" {
   description = "Tags to apply to the resource"
   type = map(string)
 }
+
+variable "acr_admin_username" {
+  description = "ACR admin usernmae"
+  type = string
+}
+
+variable "acr_admin_password" {
+  description = "ACR admin password"
+  type = string
+}
+
+variable "redis_url" {
+  description = "REDIS URL"
+  type = string
+}
+
+variable "redis_password" {
+  description = "REDIS password"
+  type = string
+}
