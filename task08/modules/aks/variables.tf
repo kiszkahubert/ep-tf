@@ -25,18 +25,6 @@ variable "node_count" {
   default     = 1
 }
 
-variable "vm_size" {
-  description = "VMs size in the default node pool"
-  type        = string
-  default     = "Standard_D2ads_v6"
-}
-
-variable "os_disk_type" {
-  description = "Nodes OS disk type"
-  type        = string
-  default     = "Ephemeral"
-}
-
 variable "acr_id" {
   description = "ACR ID"
   type        = string
@@ -55,4 +43,16 @@ variable "tenant_id" {
 variable "tags" {
   description = "Tags to apply to resources"
   type        = map(string)
+}
+
+variable "vm_size" {
+  description = "VM Size"
+  type    = string
+  default = "Standard_D2ads_v6"
+}
+
+variable "os_disk_type" {
+  description = "OS disk type"
+  type    = string
+  default = "Ephemeral"
 }

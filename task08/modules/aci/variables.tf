@@ -1,54 +1,56 @@
 variable "aci_name" {
   description = "ACI Name"
-  type = string
+  type        = string
 }
 
 variable "location" {
   description = "Location of ACI"
-  type = string
+  type        = string
 }
 
 variable "resource_group_name" {
   description = "RG Name"
-  type = string
+  type        = string
 }
 
-variable "server_name" {
+variable "acr_login_server" {
   description = "Image registry server name"
-  type = string
+  type        = string
 }
 
 variable "container_name" {
   description = "Name of the container"
-  type = string
+  type        = string
 }
 
-variable "image" {
+variable "image_name" {
   description = "Image for the container"
-  type = string
+  type        = string
 }
 
 variable "tags" {
   description = "Tags to apply to the resource"
-  type = map(string)
+  type        = map(string)
 }
 
 variable "acr_admin_username" {
   description = "ACR admin usernmae"
-  type = string
+  type        = string
 }
 
 variable "acr_admin_password" {
   description = "ACR admin password"
-  type = string
+  type        = string
+  sensitive   = true
 }
 
 variable "redis_url" {
   description = "REDIS URL"
-  type = string
+  type        = string
 }
 
 variable "redis_password" {
   description = "REDIS password"
-  type = string
+  type        = string
+  sensitive   = true
 }
