@@ -112,6 +112,13 @@ resource "kubectl_manifest" "deployment" {
 resource "kubectl_manifest" "service" {
   yaml_body  = file("${path.module}/k8s-manifests/service.yaml")
   depends_on = [kubectl_manifest.deployment]
+  wait_for {
+    field {
+      key        = "status.loadBalancer.ingress.[0].ip"
+      value      = "^(\\d+(\\.|$)){4}"
+      value_type = "regex"
+    }
+  }
 }
 
 data "kubernetes_service_v1" "app" {
