@@ -11,7 +11,7 @@ terraform {
     }
     kubectl = {
       source  = "alekc/kubectl"
-      version = ">= 2.0.0"
+      version = ">= 2.4.0"
     }
   }
 }
@@ -34,4 +34,5 @@ provider "kubectl" {
   client_key             = module.aks.kube_config_client_key
   cluster_ca_certificate = module.aks.kube_config_cluster_ca_certificate
   load_config_file       = false
+  lazy_load              = true
 }
