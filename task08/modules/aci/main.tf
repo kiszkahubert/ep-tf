@@ -12,7 +12,7 @@ resource "azurerm_container_group" "aci" {
     username = var.acr_admin_username
     password = var.acr_admin_password
   }
-  
+
   container {
     name   = var.container_name
     image  = "${var.acr_login_server}/${var.image_name}:latest"

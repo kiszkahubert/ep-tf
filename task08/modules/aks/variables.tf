@@ -47,12 +47,12 @@ variable "tags" {
 
 variable "vm_size" {
   description = "VM Size"
-  type    = string
-  default = "Standard_D2ads_v6"
+  type        = string
+  default     = "Standard_D2ads_v6"
 }
 
 variable "os_disk_type" {
   description = "OS disk type"
-  type    = string
-  default = "Ephemeral"
+  type        = string
+  default     = "Ephemeral"
 }
