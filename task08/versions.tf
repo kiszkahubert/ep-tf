@@ -35,4 +35,5 @@ provider "kubectl" {
   cluster_ca_certificate = module.aks.kube_config_cluster_ca_certificate
   load_config_file       = false
   lazy_load              = true
+  apply_retry_count      = 15
 }
