@@ -16,7 +16,7 @@ resource "azurerm_container_group" "redis" {
   dns_name_label      = var.redis_aci_name
   container {
     name   = "redis"
-    image  = "mcr.microsoft.com/cbl-mariner/base/redis:6.2"
+    image  = var.redis_image
     cpu    = "0.5"
     memory = "1.5"
     ports {

@@ -32,3 +32,9 @@ variable "redis_password_secret_name" {
   description = "Redis password secret name"
   type        = string
 }
+
+variable "redis_image" {
+  description = "Redis container image"
+  type        = string
+  default     = "mcr.microsoft.com/oss/bitnami/redis:6.0.8"
+}

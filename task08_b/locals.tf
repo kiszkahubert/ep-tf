@@ -7,7 +7,7 @@ locals {
   keyvault_name              = "${var.name_prefix}-kv"
   redis_aci_name             = "${var.name_prefix}-redis-ci"
   sa_name                    = substr(replace("${var.name_prefix}sa", "-", ""), 0, 24)
-  aca_env_name               = "${var.name_prefix}-aca-env"
+  aca_env_name               = "${var.name_prefix}-cae"
   aca_name                   = "${var.name_prefix}-aca"
   image_name                 = "${var.name_prefix}-app"
   build_task_name            = "${var.name_prefix}-build-task"

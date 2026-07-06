@@ -22,7 +22,7 @@ variable "sa_replication_type" {
 variable "sa_container_name" {
   description = "Name of the blob container"
   type        = string
-  default     = "appsource"
+  default     = "app-content"
 }
 
 variable "application_source_dir" {
