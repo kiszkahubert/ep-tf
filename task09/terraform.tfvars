@@ -1,0 +1,6 @@
+afs_subnet_name                = "AzureFirewallSubnet"
+location                       = "East US"
+aks_subnet_name                = "aks-snet"
+firewall_subnet_address_prefix = "10.0.1.0/26"
+aks_loadbalancer_ip            = "172.210.96.56"
+name_prefix                    = "cmtr-7c5kvppd-mod9"
