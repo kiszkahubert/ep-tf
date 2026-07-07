@@ -22,6 +22,10 @@ resource "azurerm_firewall" "this" {
   location            = var.location
   sku_name            = "AZFW_VNet"
   sku_tier            = "Standard"
+  private_ip_ranges = concat(
+    ["10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16"],
+    ["${var.aks_loadbalancer_ip}/32"]
+  )
   ip_configuration {
     name                 = local.ip_config_name
     subnet_id            = azurerm_subnet.afw.id
