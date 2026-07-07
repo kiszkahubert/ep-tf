@@ -70,14 +70,14 @@ resource "azurerm_firewall_network_rule_collection" "this" {
   name                = local.network_rule_collection_name
   azure_firewall_name = azurerm_firewall.this.name
   resource_group_name = var.resource_group_name
-  priority            = 100
+  priority            = 200
   action              = "Allow"
   dynamic "rule" {
     for_each = local.network_rules
     content {
       name                  = rule.value.name
       protocols             = rule.value.protocols
-      source_addresses      = [var.aks_subnet_address_prefix]
+      source_addresses      = rule.value.source_addresses
       destination_addresses = rule.value.destination_addresses
       destination_ports     = rule.value.destination_ports
     }

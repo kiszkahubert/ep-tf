@@ -24,26 +24,37 @@ locals {
     {
       name                  = "allow-dns"
       protocols             = ["UDP"]
+      source_addresses      = [var.aks_subnet_address_prefix]
       destination_ports     = ["53"]
       destination_addresses = ["*"]
     },
     {
       name                  = "allow-ntp"
       protocols             = ["UDP"]
+      source_addresses      = [var.aks_subnet_address_prefix]
       destination_ports     = ["123"]
       destination_addresses = ["*"]
     },
     {
       name                  = "allow-azure-cloud"
       protocols             = ["TCP"]
+      source_addresses      = [var.aks_subnet_address_prefix]
       destination_ports     = ["443", "9000"]
       destination_addresses = ["AzureCloud"]
     },
     {
       name                  = "allow-azure-container-registry"
       protocols             = ["TCP"]
+      source_addresses      = [var.aks_subnet_address_prefix]
       destination_ports     = ["443"]
       destination_addresses = ["AzureContainerRegistry"]
+    },
+    {
+      name                  = "allow-inbound-to-lb"
+      protocols             = ["TCP"]
+      source_addresses      = ["*"]
+      destination_ports     = ["80"]
+      destination_addresses = [var.aks_loadbalancer_ip]
     }
   ]
   nat_rules = [
