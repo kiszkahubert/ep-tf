@@ -72,13 +72,6 @@ resource "azurerm_firewall_network_rule_collection" "this" {
   resource_group_name = var.resource_group_name
   priority            = 100
   action              = "Allow"
-  rule {
-    name                  = "allow-dns"
-    protocols             = ["UDP"]
-    source_addresses      = [var.aks_subnet_address_prefix]
-    destination_addresses = ["*"]
-    destination_ports     = ["53"]
-  }
   dynamic "rule" {
     for_each = local.network_rules
     content {
