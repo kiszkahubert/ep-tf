@@ -56,13 +56,12 @@ resource "azurerm_firewall_application_rule_collection" "this" {
     name             = "allow-aks-fqdns"
     source_addresses = [var.aks_subnet_address_prefix]
     target_fqdns     = local.aks_required_fqdns
-    protocol {
-      port = 443
-      type = "Https"
-    }
-    protocol {
-      port = 80
-      type = "Http"
+    dynamic "protocol" {
+      for_each = ["Https", "Http"]
+      content {
+        port = protocol.value == "Https" ? 443 : 80
+        type = protocol.value
+      }
     }
   }
 }
@@ -80,26 +79,15 @@ resource "azurerm_firewall_network_rule_collection" "this" {
     destination_addresses = ["*"]
     destination_ports     = ["53"]
   }
-  rule {
-    name                  = "allow-ntp"
-    protocols             = ["UDP"]
-    source_addresses      = [var.aks_subnet_address_prefix]
-    destination_addresses = ["*"]
-    destination_ports     = ["123"]
-  }
-  rule {
-    name                  = "allow-azure-cloud"
-    protocols             = ["TCP"]
-    source_addresses      = [var.aks_subnet_address_prefix]
-    destination_addresses = ["AzureCloud"]
-    destination_ports     = ["443", "9000"]
-  }
-  rule {
-    name                  = "allow-azure-container-registry"
-    protocols             = ["TCP"]
-    source_addresses      = [var.aks_subnet_address_prefix]
-    destination_addresses = ["AzureContainerRegistry"]
-    destination_ports     = ["443"]
+  dynamic "rule" {
+    for_each = local.network_rules
+    content {
+      name                  = rule.value.name
+      protocols             = rule.value.protocols
+      source_addresses      = [var.aks_subnet_address_prefix]
+      destination_addresses = rule.value.destination_addresses
+      destination_ports     = rule.value.destination_ports
+    }
   }
 }
 
@@ -109,13 +97,16 @@ resource "azurerm_firewall_nat_rule_collection" "this" {
   resource_group_name = var.resource_group_name
   priority            = 100
   action              = "Dnat"
-  rule {
-    name                  = "allow-nginx-inbound"
-    source_addresses      = ["*"]
-    destination_addresses = [azurerm_public_ip.afw.ip_address]
-    destination_ports     = ["80"]
-    protocols             = ["TCP"]
-    translated_address    = var.aks_loadbalancer_ip
-    translated_port       = "80"
+  dynamic "rule" {
+    for_each = local.nat_rules
+    content {
+      name                  = rule.value.name
+      source_addresses      = rule.value.source_addresses
+      destination_addresses = [azurerm_public_ip.afw.ip_address]
+      destination_ports     = rule.value.destination_ports
+      protocols             = rule.value.protocols
+      translated_address    = rule.value.translated_address
+      translated_port       = rule.value.translated_port
+    }
   }
 }

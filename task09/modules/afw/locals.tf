@@ -20,4 +20,40 @@ locals {
     "*.oms.opinsights.azure.com",
     "*.monitoring.azure.com"
   ]
+  network_rules = [
+    {
+      name                  = "allow-dns"
+      protocols             = ["UDP"]
+      destination_ports     = ["53"]
+      destination_addresses = ["*"]
+    },
+    {
+      name                  = "allow-ntp"
+      protocols             = ["UDP"]
+      destination_ports     = ["123"]
+      destination_addresses = ["*"]
+    },
+    {
+      name                  = "allow-azure-cloud"
+      protocols             = ["TCP"]
+      destination_ports     = ["443", "9000"]
+      destination_addresses = ["AzureCloud"]
+    },
+    {
+      name                  = "allow-azure-container-registry"
+      protocols             = ["TCP"]
+      destination_ports     = ["443"]
+      destination_addresses = ["AzureContainerRegistry"]
+    }
+  ]
+  nat_rules = [
+    {
+      name               = "allow-nginx-inbound"
+      source_addresses   = ["*"]
+      destination_ports  = ["80"]
+      protocols          = ["TCP"]
+      translated_address = var.aks_loadbalancer_ip
+      translated_port    = "80"
+    }
+  ]
 }
